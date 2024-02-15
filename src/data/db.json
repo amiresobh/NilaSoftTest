@@ -1,0 +1,59 @@
+{
+    "products": [
+      {
+        "id": 1,
+        "name": "Jacket Jeans",
+        "price": 45.9,
+        "size": ["M","S"],
+        "images": ["image1.jpg"],
+        "colors":["91A1B0","B11D1D","1F44A3"],
+        "tags": ["New","Trending Now","Women","Men"]
+      },
+      {
+        "id": 2,
+        "name": "Acrylic Sweater",
+        "price": 37.9,
+        "size": ["S","L","XL"],
+        "images": ["image2.jpg"],
+        "colors":["91A1B0","B11D1D","1F44A3","9F632A","1D752B","000000"],
+        "tags": ["New","Women"]
+
+      },
+      {
+        "id": 3,
+        "name": "Winter Coat",
+        "price": 65.9,
+        "size": ["L","XL","S"],
+        "images": ["image3.jpg"],
+        "colors":["91A1B0","1F44A3","9F632A","000000"],
+        "tags": ["New","Trending Now","Women"]
+      },
+      {
+        "id": 4,
+        "name": "Acrylic Sweater",
+        "price": 46.9,
+        "size": ["S","M","L","XL"],
+        "images": ["image4.jpg"],
+        "colors":["1F44A3","9F632A","1D752B","000000"],
+        "tags": ["New"]
+      },
+      {
+        "id": 5,
+        "name": "Acrylic Sweater",
+        "price": 50,
+        "size": ["S","M","XL"],
+        "images": ["image2.jpg"],
+        "colors":["1F44A3","9F632A","1D752B","000000"],
+        "tags": ["New","Trending Now"]
+      }
+    ],
+    "externals":{
+      "shippingCost": "10",
+      "currency": "$",
+      "productTags": [
+        "New","Trending Now","Women","Men","Accessory"
+      ]
+    }
+  }
+  
+  
