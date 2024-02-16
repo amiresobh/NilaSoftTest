@@ -42,7 +42,7 @@
         "name": "Acrylic Sweater",
         "price": 50,
         "size": ["S","M","XL"],
-        "images": ["image2.jpg"],
+        "images": ["image5.jpg"],
         "colors":["1F44A3","9F632A","1D752B","000000"],
         "tags": ["New","Trending Now"]
       }
@@ -51,7 +51,7 @@
       "shippingCost": "10",
       "currency": "$",
       "productTags": [
-        "New","Trending Now","Women","Men","Accessory"
+        "Trending Now","All","New","Women","Men","Accessory"
       ]
     }
   }

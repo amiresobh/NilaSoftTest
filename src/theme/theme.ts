@@ -13,6 +13,7 @@ interface Spacing {
   space_30: number;
   space_32: number;
   space_36: number;
+  space_40: number;
 }
 
 export const SPACING: Spacing = {
@@ -30,18 +31,43 @@ export const SPACING: Spacing = {
   space_30: 30,
   space_32: 32,
   space_36: 36,
+  space_40: 40
 };
 
 interface Color {
   tabBarActiveTintColor: string;
   tabBarInactiveTintColor: string;
+  backgroundGradientFirstColor: string;
+  backgroundGradientSecondColor: string;
+  backgroundGradientThirdColor: string;
+  backgroundGradientFourthColor: string;
   primaryWhiteHex: string;
+  primaryBlackHex: string;
+  activeTagBackgroundColor: string;
+  inactiveTagBackgroundColor: string;
+  activeTagTextColor: string;
+  inactiveTagTextColor: string;
+  productNameTextColor: string,
+  productPriceTextColor: string,
+  favoriteIconColor: string
 }
 
 export const COLORS: Color = {
   tabBarActiveTintColor: '#e96e6e',
   tabBarInactiveTintColor: '#c0c0c0',
+  backgroundGradientFirstColor: '#fdf1f3',
+  backgroundGradientSecondColor: '#fef5f6',
+  backgroundGradientThirdColor: '#fef7f8',
+  backgroundGradientFourthColor: '#fffbfc',
   primaryWhiteHex: '#FFFFFF',
+  primaryBlackHex: '#000000',
+  activeTagBackgroundColor: '#e96e6e',
+  inactiveTagBackgroundColor: '#dfdcdc',
+  activeTagTextColor: '#FFFFFF',
+  inactiveTagTextColor: '#938f8f',
+  productNameTextColor: '#444444',
+  productPriceTextColor: '#9c9c9c',
+  favoriteIconColor: '#e55b5b'
 };
 
 interface FontFamily {
