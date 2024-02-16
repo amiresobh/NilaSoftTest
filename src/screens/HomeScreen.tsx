@@ -26,6 +26,10 @@ import HeaderBar from '../components/HeaderBar';
 import SearchIcon from '../assets/Icons/search';
 import {ProductCard} from '../components/ProductCard';
 import {useBottomTabBarHeight} from '@react-navigation/bottom-tabs';
+import CloseIcon from '../assets/Icons/close';
+
+const windowHeight = Dimensions.get('window').height;
+
 
 const HomeScreen = () => {
   const ProductsList = useStore((state: any) => state.products);
@@ -52,11 +56,12 @@ const HomeScreen = () => {
           />
         </TouchableOpacity>
         <TextInput
-          key={2}
           placeholder="Search"
           placeholderTextColor={COLORS.tabBarInactiveTintColor}
           value={searchText}
-          onChangeText={value => {setSearchText(value)}}
+          onChangeText={value => {
+            setSearchText(value);
+          }}
           style={styles.TextInputContainer}
         />
       </View>
@@ -112,7 +117,15 @@ const HomeScreen = () => {
       <FlatList
         showsVerticalScrollIndicator={false}
         data={sortedProducts}
-        contentContainerStyle={{...styles.flatListContainer, ...{paddingBottom: tabBarHeight}}}
+        contentContainerStyle={{
+          ...styles.flatListContainer,
+          ...{paddingBottom: tabBarHeight},
+        }}
+        ListEmptyComponent={
+          <View style={styles.EmptyFlatListContainer}>
+            <Text style={styles.EmptyFlatListText}>Did not found any product</Text>
+          </View>
+        }
         keyExtractor={item => item.id}
         numColumns={2}
         columnWrapperStyle={{justifyContent: 'space-between'}}
@@ -132,6 +145,20 @@ const HomeScreen = () => {
     );
   };
 
+  const searchProduct = (search: string) => {
+    setSelectedTag('All');
+    setSortedProducts(
+      ProductsList.filter((product: any) =>
+        product.name.toLowerCase().includes(search.toLowerCase()),
+      ),
+    );
+  };
+
+  const resetSearchProduct = () => {
+    setSelectedTag('All');
+    setSortedProducts([...ProductsList]);
+    setSearchText('');
+  };
   return (
     <LinearGradient
       start={{x: 0.5, y: 0}}
@@ -154,7 +181,43 @@ const HomeScreen = () => {
       <Text style={styles.screenTitle}> Match Your Style </Text>
 
       {/* Search Bar */}
-      <SearchBarComponent />
+      {/* <SearchBarComponent /> */}
+      <View style={styles.searchBarComponentContainer}>
+        <TouchableOpacity
+          style={styles.searchIconContainer}
+          onPress={() => {
+            searchProduct(searchText);
+          }}>
+          <SearchIcon
+            color={
+              searchText.length > 0
+                ? COLORS.tabBarActiveTintColor
+                : COLORS.tabBarInactiveTintColor
+            }
+            size={FONTSIZE.size_30}
+          />
+        </TouchableOpacity>
+        <TextInput
+          placeholder="Search"
+          placeholderTextColor={COLORS.tabBarInactiveTintColor}
+          value={searchText}
+          onChangeText={value => {
+            setSearchText(value);
+            searchProduct(value)
+          }}
+          style={styles.TextInputContainer}
+        />
+        {searchText.length > 0 && (
+          <TouchableOpacity
+            style={styles.clearSearchTextBtn}
+            onPress={() => resetSearchProduct()}>
+            <CloseIcon
+              size={FONTSIZE.size_16}
+              color={COLORS.inactiveTagTextColor}
+            />
+          </TouchableOpacity>
+        )}
+      </View>
 
       {/* Tags scrollview*/}
       <TagsScrollerComponent />
@@ -220,6 +283,24 @@ const styles = StyleSheet.create({
     marginHorizontal: SPACING.space_16,
     // paddingBottom: 80
   },
+  clearSearchTextBtn: {
+    marginRight: SPACING.space_10,
+    backgroundColor: COLORS.inactiveTagBackgroundColor,
+    padding: SPACING.space_2,
+    borderRadius: BORDERRADIUS.radius_20,
+  },
+  EmptyFlatListContainer: {
+    justifyContent:'center',
+    alignItems: 'center',
+    height: windowHeight / 3,
+    flex: 1
+  },
+  EmptyFlatListText: {
+    fontFamily: FONTFAMILY.poppins_medium,
+    fontSize: FONTSIZE.size_16,
+    color: COLORS.productNameTextColor,
+  },
+
 });
 
 export default HomeScreen;

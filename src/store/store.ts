@@ -12,7 +12,7 @@ export const useStore = create(
     externals: db.externals,
     FavoritesList: [],
     CartList: [],
-    CartPrice: 0
+    CartPrice: 0,
   }), {
     name: 'nilasoft-test-app',
     storage: createJSONStorage(() => AsyncStorage),
