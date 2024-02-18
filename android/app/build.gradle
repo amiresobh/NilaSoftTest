@@ -89,6 +89,12 @@ android {
             keyAlias 'androiddebugkey'
             keyPassword 'android'
         }
+        release {
+            storeFile file('nilasoftchalleng.keystore')
+            storePassword 'a13897777A'
+            keyAlias 'nilasoftchalleng'
+            keyPassword 'a13897777A'
+        }
     }
     buildTypes {
         debug {
@@ -100,6 +106,7 @@ android {
             signingConfig signingConfigs.debug
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
+            signingConfig signingConfigs.release
         }
     }
 }

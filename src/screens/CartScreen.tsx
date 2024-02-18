@@ -2,6 +2,7 @@ import {
   Dimensions,
   FlatList,
   Image,
+  ScrollView,
   StyleSheet,
   Text,
   TouchableOpacity,
@@ -32,7 +33,7 @@ const CartScreen = ({navigation}: any) => {
 
   const deleteFromCartList = useStore((state: any) => state.deleteFromCartList);
   const emptyCartList = useStore((state: any) => state.emptyCartList);
-  
+
   const calculateTotalPrice = () => {
     let totalPrice = 0.0;
     CartList.forEach((item: any) => {
@@ -42,9 +43,9 @@ const CartScreen = ({navigation}: any) => {
   };
 
   const calculateShippingPrice = () => {
-    if(CartList.length > 0) return parseInt(Externals.shippingCost)
-    else return 0
-  }
+    if (CartList.length > 0) return parseInt(Externals.shippingCost);
+    else return 0;
+  };
   const calculateGrandTotalPrice = () => {
     let grandTotal = calculateTotalPrice() + calculateShippingPrice();
 
@@ -156,29 +157,46 @@ const CartScreen = ({navigation}: any) => {
         <View style={styles.totalAndShippingContainer}>
           <View style={styles.totalContainer}>
             <Text style={styles.cartItemPriceText}>Total:</Text>
-            <Text style={styles.cartItemPriceText}>{props.currency}{props.totalPrice}</Text>
+            <Text style={styles.cartItemPriceText}>
+              {props.currency}
+              {props.totalPrice}
+            </Text>
           </View>
           <View style={styles.totalContainer}>
             <Text style={styles.cartItemPriceText}>Shipping:</Text>
-            <Text style={styles.cartItemPriceText}>{props.currency}{props.shippinPrice}</Text>
+            <Text style={styles.cartItemPriceText}>
+              {props.currency}
+              {props.shippinPrice}
+            </Text>
           </View>
         </View>
-        <View style={{height: 1, backgroundColor: COLORS.tabBarInactiveTintColor}} />
+        <View
+          style={{height: 1, backgroundColor: COLORS.tabBarInactiveTintColor}}
+        />
         <View style={styles.totalContainer}>
           <Text style={styles.cartItemPriceText}>Grand Total:</Text>
-          <Text style={{...styles.cartItemPriceText, color: COLORS.productNameTextColor}}>{props.currency}{props.grandTotalPrice}</Text>
+          <Text
+            style={{
+              ...styles.cartItemPriceText,
+              color: COLORS.productNameTextColor,
+            }}>
+            {props.currency}
+            {props.grandTotalPrice}
+          </Text>
         </View>
       </View>
     );
   };
 
   const CheckoutBtnComponent = () => {
-    return(
-      <TouchableOpacity style={styles.checkoutBtn} onPress={()=> emptyCartList()}>
+    return (
+      <TouchableOpacity
+        style={styles.checkoutBtn}
+        onPress={() => emptyCartList()}>
         <Text style={styles.checkOutBtnText}>Checkout</Text>
       </TouchableOpacity>
-    )
-  }
+    );
+  };
   return (
     <LinearGradient
       start={{x: 0.5, y: 0}}
@@ -193,21 +211,23 @@ const CartScreen = ({navigation}: any) => {
       {/* App Header */}
       <HeaderBar onPress={() => navigation.pop()} HeaderLeft={BackBtn} />
 
-      {/* Cart Items FlatList */}
-      <View style={{height: windowHeight / 2}}>
-        <CartItemsFlatListComponent />
+      <View style={{flex: 1, justifyContent: 'space-between'}}>
+        {/* Cart Items FlatList */}
+        <View style={{height: windowHeight / 2, flex: 1}}>
+          <CartItemsFlatListComponent />
+        </View>
+
+        {/* Totals */}
+        <TotalsComponent
+          currency={Externals.currency}
+          totalPrice={calculateTotalPrice().toFixed(1).toString()}
+          shippinPrice={calculateShippingPrice().toFixed(1).toString()}
+          grandTotalPrice={calculateGrandTotalPrice().toFixed(1).toString()}
+        />
+
+        {/* Checkout BTN */}
+        <CheckoutBtnComponent />
       </View>
-
-      {/* Totals */}
-      <TotalsComponent
-        currency={Externals.currency}
-        totalPrice={calculateTotalPrice().toFixed(1).toString()}
-        shippinPrice={calculateShippingPrice().toFixed(1).toString()}
-        grandTotalPrice={calculateGrandTotalPrice().toFixed(1).toString()}
-      />
-
-      {/* Checkout BTN */}
-      <CheckoutBtnComponent />
     </LinearGradient>
   );
 };
@@ -281,15 +301,15 @@ const styles = StyleSheet.create({
     fontSize: FONTSIZE.size_18,
     color: COLORS.productNameTextColor,
   },
-  TotalsComponentContainer:{
+  TotalsComponentContainer: {
     marginHorizontal: SPACING.space_24,
-    marginTop: SPACING.space_24
+    marginTop: SPACING.space_24,
   },
-  totalAndShippingContainer:{},
-  totalContainer:{
+  totalAndShippingContainer: {},
+  totalContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginVertical: SPACING.space_10
+    marginVertical: SPACING.space_10,
   },
   checkoutBtn: {
     backgroundColor: COLORS.activeTagBackgroundColor,
@@ -300,12 +320,11 @@ const styles = StyleSheet.create({
     marginHorizontal: SPACING.space_20,
     borderRadius: BORDERRADIUS.radius_20,
   },
-  checkOutBtnText:{
+  checkOutBtnText: {
     fontFamily: FONTFAMILY.poppins_semibold,
     color: COLORS.primaryWhiteHex,
     fontSize: FONTSIZE.size_20,
   },
-
 });
 
 export default CartScreen;

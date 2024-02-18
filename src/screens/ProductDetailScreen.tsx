@@ -24,6 +24,8 @@ import {images} from '../assets/Images/Images';
 const windowHeight = Dimensions.get('window').height;
 const windowWidth = Dimensions.get('window').width;
 
+let imageHeight = windowHeight / 5
+
 const ProductDetailScreen = ({navigation, route}: any) => {
   const Externals = useStore((state: any) => state.externals);
 
@@ -44,7 +46,7 @@ const ProductDetailScreen = ({navigation, route}: any) => {
       <View style={styles.imageComponentContainer}>
         <Image
           source={images[props.imageName]}
-          style={styles.image}
+          style={{...styles.image, ...{height: windowHeight > 850 ? windowHeight / 2 : windowHeight / 2.5}}}
           resizeMode="cover"
         />
         <View style={styles.imageComponentDetails}>
@@ -170,33 +172,42 @@ const ProductDetailScreen = ({navigation, route}: any) => {
       />
       {/* App Header */}
       <HeaderBar onPress={() => navigation.pop()} />
-      <ScrollView showsVerticalScrollIndicator={false}>
-        {/* Product Image */}
-        <ImageComponent
-          imageName={Product.images[0].slice(0, -4)}
-          currency={Externals.currency}
-          productName={Product.name}
-          productPrice={Product.price}
-        />
+      {/* <ScrollView showsVerticalScrollIndicator={false}> */}
+        <View style={{flex: 1, justifyContent: 'space-between'}}>
+          {/* Product Image */}
+          <View style={{}}>
+            <ImageComponent
+              imageName={Product.images[0].slice(0, -4)}
+              currency={Externals.currency}
+              productName={Product.name}
+              productPrice={Product.price}
+            />
 
-        {/* Sizes */}
-        <SizesComponent sizes={Product.size} />
+          </View>
 
-        {/* Colors */}
-        <ColorsComponent colors={Product.colors} />
+          <View>
+            {/* Sizes */}
+            <SizesComponent sizes={Product.size} />
 
-        {/* Add to cart button */}
-        <AddToCartBtn
-          onPress={() =>
-            addToCartHandler({
-              id: Product.id,
-              name: Product.name,
-              imageName: Product.images[0],
-              price: Product.price,
-            })
-          }
-        />
-      </ScrollView>
+            {/* Colors */}
+            <ColorsComponent colors={Product.colors} />
+
+            {/* Add to cart button */}
+            <AddToCartBtn
+              onPress={() =>
+                addToCartHandler({
+                  id: Product.id,
+                  name: Product.name,
+                  imageName: Product.images[0],
+                  price: Product.price,
+                })
+              }
+            />
+
+          </View>
+
+        </View>
+      {/* </ScrollView> */}
     </LinearGradient>
   );
 };
@@ -210,7 +221,6 @@ const styles = StyleSheet.create({
   },
   image: {
     width: windowWidth,
-    height: windowHeight / 2,
   },
   imageComponentDetails: {
     flexDirection: 'row',
