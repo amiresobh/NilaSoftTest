@@ -42,47 +42,91 @@
       "sha1": "09ba4dcd5509c8085bf88c665dcc51cbdfced27b"
     },
     {
+      "path": "src/assets/Icons/apps.jsx",
+      "sha1": "4e49e232489686a88b7233328f066dffc0d67362"
+    },
+    {
       "path": "src/assets/Icons/apps.svg",
       "sha1": "58aef8ff5fceadf052ca51c383e200251808b50f"
+    },
+    {
+      "path": "src/assets/Icons/close.jsx",
+      "sha1": "383c78071f918d1e6b4539b28540c48051940577"
+    },
+    {
+      "path": "src/assets/Icons/delete_outline.jsx",
+      "sha1": "30e97b41b29b874287fc8a5f983ad3f5721e1b75"
     },
     {
       "path": "src/assets/Icons/delete_outline.svg",
       "sha1": "cef147cd2003d799d552b8dec7b760bbbf9a95f0"
     },
     {
+      "path": "src/assets/Icons/favorite.jsx",
+      "sha1": "4050f91583e2a352aa573c0bc4bbea9be6597650"
+    },
+    {
       "path": "src/assets/Icons/favorite.svg",
       "sha1": "fb74d06d1990e9e2034021f21534eb4d0873998c"
+    },
+    {
+      "path": "src/assets/Icons/favorite_border.jsx",
+      "sha1": "61f84004d77d591d85b09cfc649242baab631c1d"
     },
     {
       "path": "src/assets/Icons/favorite_border.svg",
       "sha1": "5f8cf25fa4e67bec656fe8e1129602035692f5e9"
     },
     {
+      "path": "src/assets/Icons/home.jsx",
+      "sha1": "4ea476f4f7b7a1a946c8448d3a42d9110563fc60"
+    },
+    {
       "path": "src/assets/Icons/home.svg",
       "sha1": "737baed6bddb8d15b97e8c3ed6b161384ce08785"
+    },
+    {
+      "path": "src/assets/Icons/person.jsx",
+      "sha1": "40dc58f82b8a17c17fec1ff73358255742a523ca"
     },
     {
       "path": "src/assets/Icons/person.svg",
       "sha1": "fd06c81de80bb04498cee709f8f03c2d46e6bbb9"
     },
     {
+      "path": "src/assets/Icons/reorder.jsx",
+      "sha1": "961225a18276d6891440847a931aba02b2e73abe"
+    },
+    {
       "path": "src/assets/Icons/reorder.svg",
       "sha1": "692132a3d48c77a9707d00a38648cb595aebded2"
+    },
+    {
+      "path": "src/assets/Icons/search.jsx",
+      "sha1": "693013db9d7215c3085c2cc14ad0fa7148294a69"
     },
     {
       "path": "src/assets/Icons/search.svg",
       "sha1": "93a02890419a4a4ab79f4d3df1aec41578378750"
     },
     {
+      "path": "src/assets/Icons/shopping_cart.jsx",
+      "sha1": "76a47f38aee39cb17c29560fbc7aad6e76bfdb48"
+    },
+    {
       "path": "src/assets/Icons/shopping_cart.svg",
       "sha1": "403f4c384673527432b8d01954e0b560bb4e87db"
+    },
+    {
+      "path": "src/assets/Icons/vector.jsx",
+      "sha1": "94632877cd76fc7c3066e9e29267cdf2db6720b4"
     },
     {
       "path": "src/assets/Icons/Vector.svg",
       "sha1": "210dc71d7016e9acc8e30486165bebc16fb1180b"
     },
     {
-      "path": "src/assets/Images/Ellipse2.png",
+      "path": "src/assets/Images/ellipse2.png",
       "sha1": "dd5de6c3345741174867fcaa66e95be7aec0515e"
     },
     {
@@ -104,6 +148,10 @@
     {
       "path": "src/assets/Images/image5.png",
       "sha1": "f2f41ac92cf421192a12a05bbf41bbb9b54835cc"
+    },
+    {
+      "path": "src/assets/Images/Images.ts",
+      "sha1": "f5a29540020667e1ecf52dc5d32d79c72d7ab252"
     }
   ]
 }

@@ -6,23 +6,34 @@ import ProfilePicComponent from './ProfilePicComponent';
 
 interface HeaderBarProps {
   title?: string;
+  onPress?: Function;
+  HeaderLeft?: React.FC;
 }
 
-const HeaderBar: React.FC<HeaderBarProps> = ({title}) => {
+const HeaderBar: React.FC<HeaderBarProps> = ({
+  title,
+  onPress = () => {},
+  HeaderLeft,
+}) => {
   return (
     <View style={styles.HeaderContainer}>
-      <TouchableOpacity>
-        <AppIconComponent color="#e96e6e" size={FONTSIZE.size_30} />
-      </TouchableOpacity>
+      {HeaderLeft ? (
+        <HeaderLeft />
+      ) : (
+        <TouchableOpacity onPress={() => onPress()}>
+          <AppIconComponent color="#e96e6e" size={FONTSIZE.size_30} />
+        </TouchableOpacity>
+      )}
       <Text style={styles.HeaderText}>{title}</Text>
-        <ProfilePicComponent size={SPACING.space_40}/>
+      <ProfilePicComponent size={SPACING.space_40} />
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   HeaderContainer: {
-    padding: SPACING.space_30,
+    paddingHorizontal: SPACING.space_24,
+    paddingVertical: SPACING.space_18,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',

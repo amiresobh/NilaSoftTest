@@ -49,7 +49,11 @@ interface Color {
   inactiveTagTextColor: string;
   productNameTextColor: string,
   productPriceTextColor: string,
-  favoriteIconColor: string
+  favoriteIconColor: string,
+  productPriceTextInDetailsColor: string,
+  productNameTextInDetailsColor: string,
+  selectedSizeTextColor: string;
+  vectorIconColor: string;
 }
 
 export const COLORS: Color = {
@@ -67,7 +71,11 @@ export const COLORS: Color = {
   inactiveTagTextColor: '#938f8f',
   productNameTextColor: '#444444',
   productPriceTextColor: '#9c9c9c',
-  favoriteIconColor: '#e55b5b'
+  favoriteIconColor: '#e55b5b',
+  productNameTextInDetailsColor: '#444444',
+  productPriceTextInDetailsColor: '#4c4c4c',
+  selectedSizeTextColor: '#e55b5b',
+  vectorIconColor: '#e96e6e'
 };
 
 interface FontFamily {
@@ -105,6 +113,9 @@ interface FontSize {
   size_24: number;
   size_28: number;
   size_30: number;
+  size_32: number;
+  size_36: number;
+  size_40: number;
 }
 
 export const FONTSIZE: FontSize = {
@@ -118,6 +129,10 @@ export const FONTSIZE: FontSize = {
   size_24: 24,
   size_28: 28,
   size_30: 30,
+  size_32: 32,
+  size_36: 36,
+  size_40: 40,
+  
 };
 
 interface BorderRadius {

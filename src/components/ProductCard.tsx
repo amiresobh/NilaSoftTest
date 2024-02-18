@@ -26,11 +26,23 @@ export const ProductCard = (props: {
   productName: string;
   productPrice: number;
   currency: string;
+  isFavorite: boolean;
+  toggleFavorite: Function;
 }) => {
   return (
     <View style={styles.wrapper}>
-      <TouchableOpacity style={styles.likeBtn}>
-        <FavoriteIcon size={FONTSIZE.size_18} color={COLORS.favoriteIconColor}/>
+      <TouchableOpacity style={styles.likeBtn} onPress={()=> props.toggleFavorite()}>
+        {props.isFavorite ? (
+          <FavoriteIcon
+            size={FONTSIZE.size_18}
+            color={COLORS.favoriteIconColor}
+          />
+        ) : (
+          <FavoriteBorderIcon
+            size={FONTSIZE.size_18}
+            color={COLORS.favoriteIconColor}
+          />
+        )}
       </TouchableOpacity>
       <Image
         source={images[props.imageName]}
@@ -39,7 +51,10 @@ export const ProductCard = (props: {
       />
       <View style={styles.bottomWrapper}>
         <Text style={styles.nameText}>{props.productName}</Text>
-        <Text style={styles.priceText}>{props.currency}{props.productPrice}</Text>
+        <Text style={styles.priceText}>
+          {props.currency}
+          {props.productPrice}
+        </Text>
       </View>
     </View>
   );
@@ -76,8 +91,8 @@ const styles = StyleSheet.create({
     padding: SPACING.space_4,
     borderRadius: BORDERRADIUS.radius_25,
     width: FONTSIZE.size_30,
-    height:  FONTSIZE.size_30,
+    height: FONTSIZE.size_30,
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
   },
 });

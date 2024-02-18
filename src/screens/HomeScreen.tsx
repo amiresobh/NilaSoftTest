@@ -30,8 +30,7 @@ import CloseIcon from '../assets/Icons/close';
 
 const windowHeight = Dimensions.get('window').height;
 
-
-const HomeScreen = () => {
+const HomeScreen = ({navigation}: any) => {
   const ProductsList = useStore((state: any) => state.products);
   const Externals = useStore((state: any) => state.externals);
   const [tags, setTags] = useState(Externals.productTags);
@@ -40,7 +39,22 @@ const HomeScreen = () => {
   const [sortedProducts, setSortedProducts] = useState(
     getProductsList(selectedTag, ProductsList),
   );
+
   const tabBarHeight = useBottomTabBarHeight();
+
+  const FavoritesList = useStore((state: any) => state.FavoritesList)
+  const addToFavoriteList = useStore((state: any) => state.addToFavoriteList);
+  const deleteFromFavoriteList = useStore(
+    (state: any) => state.deleteFromFavoriteList,
+  );
+  const ToggleFavourite = (favourite: boolean, id: string) => {
+    favourite ? deleteFromFavoriteList(id) : addToFavoriteList(id);
+  };
+  const isFavorite = (id: number) => {
+    const index = FavoritesList.findIndex((item: any) => item.id == id)
+    if(index == -1) return false
+    else return true
+  }
 
   const SearchBarComponent = () => {
     return (
@@ -123,7 +137,9 @@ const HomeScreen = () => {
         }}
         ListEmptyComponent={
           <View style={styles.EmptyFlatListContainer}>
-            <Text style={styles.EmptyFlatListText}>Did not found any product</Text>
+            <Text style={styles.EmptyFlatListText}>
+              Did not found any product
+            </Text>
           </View>
         }
         keyExtractor={item => item.id}
@@ -131,12 +147,17 @@ const HomeScreen = () => {
         columnWrapperStyle={{justifyContent: 'space-between'}}
         renderItem={product => {
           return (
-            <TouchableOpacity onPress={() => {}}>
+            <TouchableOpacity
+              onPress={() => {
+                navigation.push('ProductDetail', {product: product.item});
+              }}>
               <ProductCard
                 imageName={product.item.images[0].slice(0, -4)}
                 productName={product.item.name}
                 productPrice={product.item.price}
                 currency={Externals.currency}
+                isFavorite={isFavorite(product.item.id)}
+                toggleFavorite={() => ToggleFavourite(isFavorite(product.item.id), product.item.id)}
               />
             </TouchableOpacity>
           );
@@ -203,7 +224,7 @@ const HomeScreen = () => {
           value={searchText}
           onChangeText={value => {
             setSearchText(value);
-            searchProduct(value)
+            searchProduct(value);
           }}
           style={styles.TextInputContainer}
         />
@@ -281,7 +302,6 @@ const styles = StyleSheet.create({
   },
   flatListContainer: {
     marginHorizontal: SPACING.space_16,
-    // paddingBottom: 80
   },
   clearSearchTextBtn: {
     marginRight: SPACING.space_10,
@@ -290,17 +310,16 @@ const styles = StyleSheet.create({
     borderRadius: BORDERRADIUS.radius_20,
   },
   EmptyFlatListContainer: {
-    justifyContent:'center',
+    justifyContent: 'center',
     alignItems: 'center',
     height: windowHeight / 3,
-    flex: 1
+    flex: 1,
   },
   EmptyFlatListText: {
     fontFamily: FONTFAMILY.poppins_medium,
     fontSize: FONTSIZE.size_16,
     color: COLORS.productNameTextColor,
   },
-
 });
 
 export default HomeScreen;
